@@ -1,4 +1,4 @@
-# hindi_voice_assistant
+# Offline_Hindi_Voice_Assistant
 # 🗣️ Offline Hindi Voice Assistant on Raspberry Pi 4 Model B
 
 ## 📌 Project Overview
@@ -112,13 +112,10 @@ All processing is executed locally on the Raspberry Pi without any internet conn
 
 offline-hindi-assistant/
 │
-├── models/
-│   └── vosk-model-small-hi
-│
-├── main.py
-├── config.py
+├── assistant.py
+├── readme.txt
 ├── requirements.txt
-└── README.md
+└── setup.sh
 
 ## 🔧 Installation & Setup
 1️⃣ Clone Repository
@@ -136,7 +133,7 @@ Download the Hindi model from the official Vosk website and place it inside the 
 https://alphacephei.com/vosk/models/vosk-model-small-hi-0.22.zip
 
 4️⃣ Run the Application
-python main.py
+python assistant.py
 
 ## 🧠 Applications
 
