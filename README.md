@@ -8,19 +8,15 @@ The system performs real-time speech recognition, command processing, and text-t
 
 The objective is to design a low-latency, privacy-preserving embedded speech pipeline suitable for edge deployment in low-resource environments.
 
-## 👩‍💻 About the Author
-
-**Deepasri M**  
-Electronics Engineering (VLSI Design and Technology)
-Areas of Interest: VLSI Design, FPGA Design, Hardware Acceleration, Signal Processing, Edge AI  
-
-Focused on building performance-optimized, hardware-aware intelligent systems for real-time applications.
-
 ## 👥 Team
 
-- Deepasri M – System Architecture, Embedded Integration, Audio Pipeline Design  
-- Sowmyavalli S – Model Deployment, Optimization
-- Sahana S -  Testing & Validation  
+- Deepasri M  
+- Sowmyavalli S 
+- Sahana S 
+
+B.E- ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY) 
+
+K.S.RANGASAMY COLLEGE OF TECHNOLOGY, TIRUCHENGODE
 
 ## 🎯 Problem Statement
 Offline, Privacy-Preserving Hindi Voice Assistant on Raspberry Pi
@@ -68,6 +64,8 @@ Where possible, aim to use the CPU without additional accelerators/hats. Solutio
 
 ## 🏗️ System Architecture
 
+<img width="887" height="465" alt="image" src="https://github.com/user-attachments/assets/e81d940a-9b26-458f-9597-ecf2c84b99f5" />
+
 ### 🔹 Hardware
 - Raspberry Pi 4  
 - USB Microphone  
@@ -77,7 +75,60 @@ Where possible, aim to use the CPU without additional accelerators/hats. Solutio
 - Python 3.9  
 - Vosk (Offline Speech Recognition Engine)  
 - eSpeak (Text-to-Speech Engine)  
-- ALSA / PulseAudio (Audio Interface)  
+- ALSA / PulseAudio (Audio Interface)
+
+## Commands
+1. System Update (Mandatory First Step)
+- sudo apt update
+- sudo apt upgrade -y
+2. Install Required System Dependencies
+These are required for audio processing and TTS:
+- sudo apt install python3 python3-pip python3-dev -y
+- sudo apt install portaudio19-dev -y
+- sudo apt install espeak-ng -y
+- sudo apt install unzip wget -y
+3. Install Python Libraries
+- pip3 install --upgrade pip
+- pip3 install vosk
+- pip3 install pyaudio
+4. Download Hindi ASR Model
+- mkdir -p ~/models
+- cd ~/models
+
+  wget https://alphacephei.com/vosk/models/vosk-model-small-hi-0.22.zip
+
+  unzip vosk-model-small-hi-0.22.zip
+
+##After extraction, verify:
+- ls
+##You should see:
+- vosk-model-small-hi-0.22
+5. Verify Microphone Detection
+Check input device:
+- arecord -l
+Test recording:
+- arecord -d 5 test.wav
+- aplay test.wav
+If audio plays back correctly, the microphone is configured.
+6. Verify Speaker Output
+- speaker-test -t wav
+- Press Ctrl + C to stop.
+7. Check Audio Profile (If Needed)
+- pactl list cards
+If required:
+- pactl set-card-profile <card_name> output:stereo-fallback
+8. Confirm eSpeak Hindi Voice
+- espeak-ng -v hi "नमस्ते"
+If you hear Hindi speech → TTS is working.
+9. Navigate to Project Directory
+- cd ~
+Confirm your Python file exists:
+- ls
+Example:
+- assistant.py
+Final Command to Run
+- python assistant.py
+
 ## ⚙️ Working Principle
 
 1. Audio is captured through the microphone at 16kHz sampling rate.  
@@ -172,3 +223,11 @@ This project demonstrates:
 4. Practical application of signal processing and embedded programming
 
 It bridges the gap between AI algorithms and hardware-aware deployment, making it suitable for both academic and industrial exploration.
+
+## Conclusion
+
+This project successfully demonstrates the implementation of a fully offline Hindi Voice Assistant on a Raspberry Pi platform. The system performs real-time speech recognition, intent processing, and text-to-speech synthesis without relying on cloud services, ensuring privacy and low-latency responses.
+
+Through this work, we showcased the feasibility of deploying resource-efficient AI applications on embedded hardware, bridging the gap between software algorithms and hardware-aware optimization. The modular architecture allows easy future enhancements, such as multilingual support, FPGA acceleration, and wake-word detection.
+
+Overall, this project highlights the potential of offline, edge-based voice assistants for low-connectivity or privacy-sensitive environments, making it a practical and scalable solution for real-world applications.
